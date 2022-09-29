@@ -24,7 +24,7 @@ services:
     networks:
       - net-custom-cli
     tty: true  
-
+    
   front:
     build:
       context: ./frontend

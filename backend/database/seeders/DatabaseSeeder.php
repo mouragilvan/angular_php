@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Sale;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        
+        Customer::factory(10)->create();        
+       
+        Product::factory(10)->create();
+
+        Sale::factory(5)->create();
+       
+        $products = Product::all();
+        
+        Sale::all()->each(function ($sale) use ($products) {
+            $sale->itens()->attach(
+                $products->random(rand(1, 10))->pluck('id')->toArray()
+            );
+        });
     }
 }
