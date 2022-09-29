@@ -28,21 +28,7 @@ export class SaleComponent implements OnInit {
     });
   }
 
-  setQuantidade(op: string, item: Product) {
-    if (op == "sum") {
-      item.quantidade++;
-    }
-    if (op == "sub") {
-      if(item.quantidade>0){
-        item.quantidade--;
-        if(item.quantidade==0){
-          this.remove(item);
-        }
-      }
-      
-    }
-    console.log(item);
-  }
+  
 
   add(item) {   
     for( let p of this.itensList ){

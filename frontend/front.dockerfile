@@ -1,17 +1,16 @@
+# #stage 1
+FROM node:14 as node
+WORKDIR /app
+COPY . .
+RUN npm install 
+RUN npm run build 
+
+# #stage 2
 FROM webdevops/php-apache:7.3-alpine
+COPY --from=node /app/dist/angular-boostrap-theme /app
+WORKDIR /app
+RUN apk add nano
 
-RUN apk add --update nodejs npm
-RUN npm install -g @angular/cli
-
-COPY . /app
-
-# RUN npm install --legacy-peer-deps
-# RUN apk add bash
-# RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
-# RUN source ~/.nvm/nvm.sh
-# RUN nvm install 16
-# RUN nvm use v16.17.0
-#  
 
 EXPOSE 80
 EXPOSE 443

@@ -28,14 +28,10 @@ services:
   front:
     build:
       context: ./frontend
-      dockerfile: front.dockerfile
-    working_dir: /app
-    #compartilha um volume para o container
-    volumes:
-      - "./frontend:/app"
+      dockerfile: front.dockerfile       
     container_name: ${FRONT_CONTAINER_NAME}
     ports:
-      - "3000:2021"   
+      - "3000:80"   
     links:
       - back:back  
     networks:

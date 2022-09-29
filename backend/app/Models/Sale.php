@@ -10,8 +10,7 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'datesale',
+    protected $fillable = [       
         'customer_id',
         'total'
     ];
@@ -19,5 +18,10 @@ class Sale extends Model
     public function itens()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

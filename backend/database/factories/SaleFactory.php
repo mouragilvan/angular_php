@@ -16,8 +16,7 @@ class SaleFactory extends Factory
     public function definition()
     {
         
-        return [
-            'datesale'=>$this->faker->date("Y-m-d H:m:s"),
+        return [            
             'customer_id'=>Customer::find(rand(1,10)),
             'total'=> 5000            
         ];
