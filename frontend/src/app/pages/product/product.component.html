@@ -1,0 +1,32 @@
+<div class="container pt-3">
+    <h2>
+      <img src="https://cdn-icons-png.flaticon.com/512/2250/2250401.png" style="width:40px"/>
+        Produto</h2>
+    <div class="form-customer">
+      <form [formGroup]="myform">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+
+                <div class="input">
+                  <label for="name">Nome</label>
+                  <input class="form-control" id="name" formControlName="name" />
+                </div>
+                <div class="input">
+                  <label for="price">Valor</label>
+                  <input class="form-control" id="price" formControlName="price" />
+                </div>
+                               
+                <div class="input mt-3">
+                  <button class="btn btn-success" [disabled]="!myform.valid">
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

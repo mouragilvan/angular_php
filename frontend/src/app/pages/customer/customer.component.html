@@ -1,0 +1,54 @@
+<div class="container pt-3">
+  <h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/8227/8227727.png" style="width:40px"/>
+    Cliente</h2>
+  <div class="form-customer">
+    <form [formGroup]="myform">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="input">
+                <label for="name">Nome</label>
+                <input class="form-control" id="name" formControlName="name" />
+              </div>
+              <div class="input">
+                <label for="cpf">CPF</label>
+                <input class="form-control" id="cpf" formControlName="cpf" />
+              </div>
+              <div class="input">
+                <label for="birthDate">Data de nascimento</label>
+                <input class="form-control" id="birthDate" formControlName="birthDate" />
+              </div>
+              <div class="input">
+                <label for="email">E-mail</label>
+                <input class="form-control" id="email" formControlName="email" />
+              </div>
+              <div class="input">
+                <label for="phone">Telefone</label>
+                <input class="form-control" id="phone" formControlName="phone" />
+              </div>
+              <div class="input">
+                <label for="address">Endereço</label>
+                <input class="form-control" id="address" formControlName="address" />
+              </div>
+              <div class="input">
+                <label for="district">Bairro</label>
+                <input class="form-control" id="district" formControlName="district" />
+              </div>
+              <div class="input">
+                <label for="number">Número</label>
+                <input class="form-control" id="number" formControlName="number" />
+              </div>
+              <div class="input mt-3">
+                <button class="btn btn-success" [disabled]="!myform.valid">
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

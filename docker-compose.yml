@@ -1,0 +1,81 @@
+version: "3"
+
+networks:
+  net-custom-cli:
+    driver: bridge
+
+services:
+  #WEB PHP E APACHE
+  back:
+    build:
+      context: ./backend
+      dockerfile: back.dockerfile
+    working_dir: /app
+    #compartilha um volume para o container
+    volumes:
+      - "./backend:/app"
+    container_name: ${BACK_CONTAINER_NAME}
+    ports:
+      - "8000:80"
+    links:
+      - db:db           
+    environment:
+      -  PHP_MEMORY_LIMIT=-1
+    networks:
+      - net-custom-cli
+    tty: true  
+
+  front:
+    build:
+      context: ./frontend
+      dockerfile: front.dockerfile
+    working_dir: /app
+    #compartilha um volume para o container
+    volumes:
+      - "./frontend:/app"
+    container_name: ${FRONT_CONTAINER_NAME}
+    ports:
+      - "3000:2021"   
+    links:
+      - back:back  
+    networks:
+      - net-custom-cli
+    tty: true  
+
+  #MySQL Server
+  db:
+    image: mysql:latest
+    container_name: ${DB_CONTAINER_NAME}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - "3306:3306"
+    networks:
+      - net-custom-cli
+    tty: true  
+
+
+  #PHPMYADMIN
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ${PMA_CONTAINER_NAME}
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - "8080:80"
+    volumes:
+      - ./uploads.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+    networks:
+      - net-custom-cli
+    tty: true  
+
+  
