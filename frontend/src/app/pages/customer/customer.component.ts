@@ -27,7 +27,7 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {
 
     const formatter = new Intl.DateTimeFormat("pt-BR");
-    const date = this.customer?.birthDate != undefined ? formatter.format(this.customer?.birthDate) : '';
+    const date = this.customer?.birthdate != undefined ? formatter.format(this.customer?.birthdate) : '';
 
     this.myform = new FormGroup({
       // name: new FormGroup({
@@ -50,13 +50,13 @@ export class CustomerComponent implements OnInit {
         Validators.required,
         Validators.pattern("[^ @]*@[^ @]*")
       ]),
-      address: new FormControl(this.customer?.address?.address, [
+      address: new FormControl(this.customer?.address, [
         Validators.required
       ]),
-      district: new FormControl(this.customer?.address?.district, [
+      district: new FormControl(this.customer?.district, [
         Validators.required
       ]),
-      number: new FormControl(this.customer?.address?.number, [
+      number: new FormControl(this.customer?.number, [
         Validators.required
       ])
     });

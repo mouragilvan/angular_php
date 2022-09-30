@@ -16,7 +16,7 @@ class SaleResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'customer'=>$this->customer->name,
+            'customer'=>new CustomerResource($this->customer),
             'total'=>$this->total,
             'dateSale'=>$this->created_at,    
             'itens'=> ProductResource::collection($this->itens)        

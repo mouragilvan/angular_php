@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sale, sales } from '@app/shared/models/sale';
+import { ApiService } from '@app/shared/services/api.service';
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
@@ -7,20 +8,22 @@ import { Sale, sales } from '@app/shared/models/sale';
 })
 export class SalesComponent implements OnInit {
 
-  public sales = sales;
+  public sales: Sale[];
 
   public sale: Sale;
 
-  constructor() { 
-       
+  constructor(public service: ApiService) {
+
   }
 
-  setSale(sale: Sale){
-     this.sale = sale;
+  setSale(sale: Sale) {
+    this.sale = sale;
   }
 
   ngOnInit(): void {
-   
+    this.service.get("/sales").subscribe((response) => {
+      this.sales = response.data;
+    }, (e) => { console.log(e) });
   }
 
 }

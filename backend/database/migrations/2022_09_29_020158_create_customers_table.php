@@ -17,9 +17,11 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('phone');
             $table->string('cpf');
             $table->string('birthdate');
             $table->string('address');
+            $table->string('number');
             $table->string('address2');//Complemento
             $table->string('city');
             $table->string('district');

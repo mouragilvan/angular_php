@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '@app/shared/models/product';
 import { products } from '@app/shared/models/product-mock';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiService } from '@app/shared/services/api.service';
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
@@ -9,14 +10,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SaleComponent implements OnInit {
 
-  products = products;
+  products: Product[];
   itemSelected: Product[] = [];
   myform: FormGroup;
   itensList = [];
   total = 0;
 
 
-  constructor() {
+  constructor(public service: ApiService) {
 
   }
 
@@ -26,6 +27,10 @@ export class SaleComponent implements OnInit {
       products: new FormControl([], []),
       total: new FormControl('', [])
     });
+
+    this.service.get("/products").subscribe((response) => {
+      this.products = response.data;
+    }, (e) => { console.log(e) });
   }
 
   
@@ -72,6 +77,9 @@ export class SaleComponent implements OnInit {
   }
 
   search() {
+    if(this.products.length == 0){
+        return;
+    }
     let name = this.myform.value.name;
     name = name.trim();
     if (name == "") {

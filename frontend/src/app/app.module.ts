@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { PagesModule } from "./pages/pages.module";
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
+import { ApiService } from "./shared/services/api.service";
 
 
 @NgModule({
@@ -16,9 +18,10 @@ import { CommonModule } from "@angular/common";
     AppRoutingModule,
     BrowserModule,    
     CommonModule,
-    PagesModule   
+    PagesModule,
+    HttpClientModule   
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

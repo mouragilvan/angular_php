@@ -65,16 +65,16 @@
            
             <div style="padding-bottom: 20px; padding-top: 20px">
                <div class="row" *ngFor="let item of sale.itens">
-                  <div class="col-md-4">{{item.name}}</div>
-                  <div class="col-md-4" style="border-bottom-style: dotted;"></div>
-                  <div class="col-md-4">R${{item.price}}</div>
+                  <div class="col-md-6">{{item.name}}</div>
+                  
+                  <div class="col-md-6">R${{item.price}}</div>
                </div>
             </div>
 
             <div class="row" style="border-top: 1px solid gray;">
-               <div class="col-md-4">Total do pedido:</div>
-               <div class="col-md-4" style="border-bottom-style: dotted;"></div>
-               <div class="col-md-4">R${{sale.total}}</div>
+               <div class="col-md-6">Total do pedido:</div>
+              
+               <div class="col-md-6">R${{sale.total}}</div>
             </div>
 
          </div>

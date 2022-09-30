@@ -20,6 +20,8 @@ class CustomerFactory extends Factory
             'name'=>$this->faker->name(),
             'cpf'=>$cpf,
             'email'=>$this->faker->email(),
+            'phone'=>$this->faker->phoneNumber(),
+            'number'=>"{$this->faker->numberBetween(10,30)}",
             'birthdate'=>$this->faker->date('Y-m-d'),
             'address'=>$this->faker->address(),
             'address2'=>$this->faker->address(),
