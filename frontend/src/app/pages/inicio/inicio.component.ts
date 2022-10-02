@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { customers } from '@app/shared/models/customer-mock';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -7,7 +6,7 @@ import { customers } from '@app/shared/models/customer-mock';
 })
 export class InicioComponent implements OnInit {
 
-  public customers = customers;
+ 
   constructor() { 
     
   }

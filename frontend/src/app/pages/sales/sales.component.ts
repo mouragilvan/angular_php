@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sale, sales } from '@app/shared/models/sale';
+import { Sale } from '@app/shared/models/sale';
 import { ApiService } from '@app/shared/services/api.service';
 @Component({
   selector: 'app-sales',

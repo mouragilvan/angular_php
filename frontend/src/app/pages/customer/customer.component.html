@@ -1,7 +1,9 @@
+<app-loading [active]="loading"></app-loading>
 <div class="container pt-3">
   <h2>
     <img src="https://cdn-icons-png.flaticon.com/512/8227/8227727.png" style="width:40px"/>
     Cliente</h2>
+    
   <div class="form-customer">
     <form [formGroup]="myform">
       <div class="row">
@@ -41,7 +43,7 @@
                 <input class="form-control" id="number" formControlName="number" />
               </div>
               <div class="input mt-3">
-                <button class="btn btn-success" [disabled]="!myform.valid">
+                <button class="btn btn-success" [disabled]="!myform.valid" (click)="save()">
                   Salvar
                 </button>
               </div>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '@app/shared/models/product';
 import { products } from '@app/shared/models/product-mock';
+import { ApiService } from '@app/shared/services/api.service';
 
 @Component({
     selector: 'app-product',
@@ -15,16 +16,12 @@ export class ProductComponent implements OnInit {
     myform: FormGroup;
     id: number;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private service: ApiService) {
 
-        this.id = this.route.snapshot.paramMap.get('id') != undefined ? parseInt(this.route.snapshot.paramMap.get('id')) : null;
-        if (this.id != null) {
-            this.product = products.find(el => el.id == this.id);
-        }
+        
     }
 
-
-    ngOnInit(): void {
+    initForm(){
         this.myform = new FormGroup({
             name: new FormControl(this.product?.name, [
                 Validators.required
@@ -33,5 +30,14 @@ export class ProductComponent implements OnInit {
                 Validators.required
             ])
         });
+    }
+
+   async  ngOnInit() {
+        this.initForm();
+        this.id = this.route.snapshot.paramMap.get('id') != undefined ? parseInt(this.route.snapshot.paramMap.get('id')) : null;
+        if (this.id != null) {
+            this.product = await this.service.getProduct(this.id);
+            this.initForm();
+        }
     }
 }

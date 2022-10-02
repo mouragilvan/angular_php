@@ -8,11 +8,11 @@ import { CustomTableComponent } from './components/custom-table/custom-table.com
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { ApiService } from "./shared/services/api.service";
-
+import { CustomerService } from "./shared/services/customer.service";
 
 @NgModule({
   declarations: [
-    AppComponent        
+    AppComponent           
   ],
   imports: [    
     AppRoutingModule,
@@ -21,7 +21,7 @@ import { ApiService } from "./shared/services/api.service";
     PagesModule,
     HttpClientModule   
   ],
-  providers: [ApiService],
+  providers: [ApiService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

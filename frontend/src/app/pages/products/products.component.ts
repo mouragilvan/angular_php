@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '@app/shared/models/product';
 import { products } from '@app/shared/models/product-mock';
+import { ApiService } from '@app/shared/services/api.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -7,14 +9,15 @@ import { products } from '@app/shared/models/product-mock';
 })
 export class ProductsComponent implements OnInit {
 
-  public products = products;
+  public products : Product[];
   public header = ["CODIGO","NOME","PREÇO"];
-  constructor() { 
+
+  constructor(private service: ApiService) { 
     
   }
 
-  ngOnInit(): void {
-   
+  async ngOnInit() {
+      this.products = await this.service.getProducts();
   }
 
 }

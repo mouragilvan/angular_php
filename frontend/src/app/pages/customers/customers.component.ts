@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { customers } from '@app/shared/models/customer-mock';
+import {Customer} from '@app/shared/models/customer';
+import { ApiService } from '@app/shared/services/api.service';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -7,11 +8,13 @@ import { customers } from '@app/shared/models/customer-mock';
 })
 export class CustomersComponent implements OnInit {
 
-  public customers = customers;
-  constructor() {     
+  public customers : Customer[];
+
+  constructor(public service: ApiService) {     
   }
 
-  ngOnInit(): void {
+ async  ngOnInit() {
+     this.customers = await this.service.getCustomers();
   }
 
 }
