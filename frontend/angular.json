@@ -15,12 +15,8 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.js",
-              "replaceDuplicatePlugins": true
-            },
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {            
             "outputPath": "dist/angular-boostrap-theme",
             "index": "src/index.html",
             "main": "src/main.ts",

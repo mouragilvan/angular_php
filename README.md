@@ -3,10 +3,13 @@
 <p>Após fazer o git clone do projeto, acesse a raiz do mesmo e execute os seguintes comandos:</p>
 
 ```
-docker-compose build
+docker-compose build --no-cache
 ```
 ```
 docker-compose up -d
+```
+```
+docker container exec controle_vendas_php  composer install
 ```
 ```
 docker container exec controle_vendas_php php artisan migrate:fresh --seed
