@@ -37,6 +37,9 @@ services:
     networks:
       - net-custom-cli
     tty: true  
+    environment: 
+      - PROXY_API=back
+
 
   #MySQL Server
   db:

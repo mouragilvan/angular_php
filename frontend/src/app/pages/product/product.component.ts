@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '@app/shared/models/product';
 import { products } from '@app/shared/models/product-mock';
 import { ApiService } from '@app/shared/services/api.service';
+import { ProductService } from '@app/shared/services/product.service';
 
 @Component({
     selector: 'app-product',
@@ -15,10 +16,9 @@ export class ProductComponent implements OnInit {
     product: Product;
     myform: FormGroup;
     id: number;
+    loading: Boolean = false;
 
-    constructor(private route: ActivatedRoute, private service: ApiService) {
-
-        
+    constructor(private route: ActivatedRoute, private service: ProductService) {        
     }
 
     initForm(){
@@ -32,12 +32,28 @@ export class ProductComponent implements OnInit {
         });
     }
 
-   async  ngOnInit() {
+     ngOnInit(): void {
         this.initForm();
+        this.loading = true;
         this.id = this.route.snapshot.paramMap.get('id') != undefined ? parseInt(this.route.snapshot.paramMap.get('id')) : null;
         if (this.id != null) {
-            this.product = await this.service.getProduct(this.id);
+         this.service.getProduct(this.id).then((response: Product)=>{
+            this.product = response;
             this.initForm();
+         }).catch(e=>alert(JSON.stringify(e))).finally( ()=>this.loading = false );            
         }
     }
+
+    save(){
+        this.loading = true;
+        if(this.id){       
+          this.myform.value.id = this.id;  
+        }
+        this.service.save(this.myform.value).then((response: Product)=>{
+          this.product = response;      
+          confirm("SUCESSO");       
+        }).catch( e=> alert(JSON.stringify(e))).finally( ()=>{
+          this.loading = false;
+        });    
+      }
 }

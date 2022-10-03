@@ -39,9 +39,9 @@ class Handler extends ExceptionHandler
         });
 
        
-        $this->renderable(function (QueryException $e, $request) {
-            return response()->json(["message"=>"Já existe um pedido cadastrado com este item"],412);
-        });
+        // $this->renderable(function (QueryException $e, $request) {
+        //     return response()->json(["message"=>"Já existe um pedido cadastrado com este item"],412);
+        // });
 
     }
 }

@@ -9,12 +9,15 @@ import { ApiService } from '@app/shared/services/api.service';
 export class CustomersComponent implements OnInit {
 
   public customers : Customer[];
+  public loading : Boolean = false;
 
   constructor(public service: ApiService) {     
   }
 
  async  ngOnInit() {
+     this.loading = true;
      this.customers = await this.service.getCustomers();
+     this.loading = false;
   }
 
 }

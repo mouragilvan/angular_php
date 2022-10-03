@@ -9,6 +9,8 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { ApiService } from "./shared/services/api.service";
 import { CustomerService } from "./shared/services/customer.service";
+import { ProductService } from "./shared/services/product.service";
+import { SaleService } from "./shared/services/sale.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { CustomerService } from "./shared/services/customer.service";
     PagesModule,
     HttpClientModule   
   ],
-  providers: [ApiService, CustomerService],
+  providers: [ApiService, CustomerService, ProductService, SaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

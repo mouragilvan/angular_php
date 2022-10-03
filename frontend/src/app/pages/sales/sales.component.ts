@@ -12,6 +12,8 @@ export class SalesComponent implements OnInit {
 
   public sale: Sale;
 
+  public loading : Boolean = false;
+
   constructor(public service: ApiService) {
 
   }
@@ -21,9 +23,10 @@ export class SalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.service.get("/sales").subscribe((response) => {
-      this.sales = response.data;
-    }, (e) => { console.log(e) });
+      this.sales = response;
+    }, (e) => { console.log(e) },()=>{ this.loading = false});
   }
 
 }

@@ -7,11 +7,13 @@ use App\Models\Product;
 use App\Http\Resources\ProductResource;
 class ProductController extends Controller
 {
-    public function index(Product $product){
+    public function index(Product $product, Request $request){
           if($product->id){
               return new ProductResource($product);
           }
-          return ProductResource::collection(Product::all());
+          //Uma das formas nativas de se trazer um retorno com um limite de itens
+          //return array_slice(Product::all()->toArray(), 0, $request->limit);     
+          return ProductResource::collection(Product::all());    
     }
 
     public function store(Request $request)

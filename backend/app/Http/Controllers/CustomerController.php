@@ -19,12 +19,14 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        return Customer::create($request->all());
+        return new CustomerResource(Customer::create($request->all()));
     }
 
     public function update(Customer $customer, Request $request)
     {
-        return $customer->update($request->all());
+        $customer->update($request->all());
+        return new CustomerResource($customer);
+
     }
 
     public function destroy(Customer $customer)

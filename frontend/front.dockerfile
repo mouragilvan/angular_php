@@ -1,13 +1,13 @@
-# #stage 1
-# FROM node:14 as node
-# WORKDIR /app
-# COPY . .
-# RUN npm install 
-# RUN npm run build 
+FROM node:14 as node
+WORKDIR /app
+COPY . .
 
-# #stage 2
+RUN npm install 
+RUN npm run build 
+
+
 FROM webdevops/php-apache:7.3-alpine
-#COPY --from=node /app/dist/angular-boostrap-theme /app
+COPY --from=node /app/dist/angular-boostrap-theme /app
 WORKDIR /app
 RUN apk add nano
 

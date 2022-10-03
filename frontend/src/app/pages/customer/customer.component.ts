@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '@app/shared/models/customer';
 import { CustomerService } from '@app/shared/services/customer.service';
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -47,7 +48,7 @@ export class CustomerComponent implements OnInit {
       cpf: new FormControl(this.customer?.cpf, [
         Validators.required
       ]),
-      birthDate: new FormControl(this.customer?.birthdate, [
+      birthdate: new FormControl(this.customer?.birthdate, [
         Validators.required
       ]),
       phone: new FormControl(this.customer?.phone, [
@@ -60,23 +61,38 @@ export class CustomerComponent implements OnInit {
       address: new FormControl(this.customer?.address, [
         Validators.required
       ]),
+      address2: new FormControl(this.customer?.address2, [
+        Validators.required
+      ]),
+      public_area: new FormControl(this.customer?.public_area, [
+        Validators.required
+      ]),
       district: new FormControl(this.customer?.district, [
         Validators.required
       ]),
       number: new FormControl(this.customer?.number, [
         Validators.required
+      ]),
+      city: new FormControl(this.customer?.city, [
+        Validators.required
+      ]),
+      zip_code: new FormControl(this.customer?.zip_code, [
+        Validators.required
       ])
     });
   }
 
-  async save(){
-    if(this.id){  
-      this.loading = true;
-      this.myform.value.id = this.id;    
-      this.customer = await this.service.save(this.myform.value);
-      this.loading = false;
-      confirm("SUCESSO");
+   save(){
+    this.loading = true;
+    if(this.id){       
+      this.myform.value.id = this.id;  
     }
+    this.service.save(this.myform.value).then((response: Customer)=>{
+      this.customer = response;      
+      confirm("SUCESSO");       
+    }).catch( e=> alert(JSON.stringify(e))).finally( ()=>{
+      this.loading = false;
+    });    
   }
 
 }

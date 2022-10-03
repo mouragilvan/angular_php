@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '@app/shared/models/product';
 import { products } from '@app/shared/models/product-mock';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ApiService } from '@app/shared/services/api.service';
+import { SaleService } from '@app/shared/services/sale.service';
+import { Sale } from '@app/shared/models/sale';
+import { ProductService } from '@app/shared/services/product.service';
+import { Customer } from '@app/shared/models/customer';
+import { CustomerService } from '@app/shared/services/customer.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
@@ -11,33 +16,59 @@ import { ApiService } from '@app/shared/services/api.service';
 export class SaleComponent implements OnInit {
 
   products: Product[];
+  customers: Customer[];
   itemSelected: Product[] = [];
+  customerSelected: Customer[] = [];
   myform: FormGroup;
   itensList = [];
   total = 0;
+  loading: Boolean = false;
 
-
-  constructor(public service: ApiService) {
+  constructor(public productService: ProductService, 
+    public customerService: CustomerService, 
+    public saleService: SaleService, public router: Router
+    ) {
 
   }
 
   ngOnInit(): void {
     this.myform = new FormGroup({
-      name: new FormControl('', []),
+      customer: new FormControl('', []),
+      name: new FormControl(),
       products: new FormControl([], []),
       total: new FormControl('', [])
     });
+   
+    this.getProducts();
+    this.getCustomers();
+  }
 
-    this.service.get("/products").subscribe((response) => {
-      this.products = response.data;
-    }, (e) => { console.log(e) });
+  getProducts(){
+    this.loading = true;
+    this.productService.getProducts()
+      .then( (response: Product[])=>{
+         this.products = response;
+      } )
+      .catch(e=>alert(JSON.stringify(e)))
+      .finally(()=>{this.loading = false});
+  }
+
+  getCustomers()
+  {
+    this.loading = true;
+    this.customerService.getCustomers()
+      .then( (response: Customer[])=>{
+         this.customers = response;
+      } )
+      .catch(e=>alert(JSON.stringify(e)))
+      .finally(()=>{this.loading = false});
   }
 
   
 
   add(item) {   
     for( let p of this.itensList ){
-        if(p.id == item.id){           
+        if(p == item.id){           
             return;
         }
     } 
@@ -108,6 +139,21 @@ export class SaleComponent implements OnInit {
       this.itemSelected = [];
     }
 
+  }
+
+  save(){
+    this.loading = true;
+    let itens = this.myform.value.products.map(el=> el.id);
+    let total = this.myform.value.total;
+    let data =  {
+         customer_id : this.myform.value.customer,
+         itens : itens,
+         total: total
+    }
+    this.saleService.save(data).then((response: Sale)=>{
+      confirm('Pedido cadastrado com sucesso!');
+      this.router.navigate(["/"]);
+    }).catch(e=>alert(JSON.stringify(e))).then(()=>this.loading = false);
   }
 
 

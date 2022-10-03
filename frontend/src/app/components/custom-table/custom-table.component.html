@@ -1,17 +1,16 @@
-<table class="table table-striped">
-    <thead>
-        <th *ngFor="let h of header">
-            {{h}}
-        </th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of data">
-            <td *ngFor="let i of item | keyvalue; let last = last">{{i.value}} 
-                &nbsp;
-                <a *ngIf="last"  href="{{prefixUrl+'/'+item.id}}" class="btn btn-primary">
-                    <i class="fas fa-edit"></i>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="row" style="border-bottom: 1px solid gray;">
+    <div class="col" *ngFor="let h of header">
+        {{h}}
+    </div>
+</div>
+<div class="row mt-2" *ngFor="let item of data">
+    <div class="col" *ngFor="let i of item | keyvalue; let last = last">
+       
+        <span *ngIf="i.key != 'price'">{{i.value}}</span>
+        <span *ngIf="i.key == 'price'">R${{i.value}}</span>
+
+        <a *ngIf="last" href="{{prefixUrl+'/'+item.id}}" class="btn btn-primary btn-edit">
+            <i class="fas fa-edit"></i>
+        </a>
+    </div>
+</div>

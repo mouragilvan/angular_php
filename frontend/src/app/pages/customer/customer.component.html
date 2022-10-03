@@ -1,53 +1,77 @@
 <app-loading [active]="loading"></app-loading>
 <div class="container pt-3">
   <h2>
-    <img src="https://cdn-icons-png.flaticon.com/512/8227/8227727.png" style="width:40px"/>
-    Cliente</h2>
-    
-  <div class="form-customer">
+    <img src="https://cdn-icons-png.flaticon.com/512/8227/8227727.png" style="width:40px" />
+    Cliente
+  </h2>
+  <div class="text-right">
+    <a href="javascript:window.history.go(-1)" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+
+  <div class="form-customer mt-3">
     <form [formGroup]="myform">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
               <div class="input">
                 <label for="name">Nome</label>
-                <input class="form-control" id="name" formControlName="name" />
+                <input class="form-control" id="name" formControlName="name" maxlength="50"/>
               </div>
               <div class="input">
                 <label for="cpf">CPF</label>
-                <input class="form-control" id="cpf" formControlName="cpf" />
+                <input class="form-control" id="cpf" formControlName="cpf" maxlength="15"/>
               </div>
               <div class="input">
-                <label for="birthDate">Data de nascimento</label>
-                <input class="form-control" id="birthDate" formControlName="birthDate" />
+                <label for="birthdate">Data de nascimento</label>
+                <input class="form-control" type="date" id="birthdate" formControlName="birthdate" />
               </div>
               <div class="input">
                 <label for="email">E-mail</label>
-                <input class="form-control" id="email" formControlName="email" />
+                <input class="form-control" id="email" formControlName="email" maxlength="50"/>
               </div>
               <div class="input">
                 <label for="phone">Telefone</label>
-                <input class="form-control" id="phone" formControlName="phone" />
+                <input class="form-control" id="phone" formControlName="phone" maxlength="15"/>
+              </div>
+              <div class="input">
+                <label for="zip_code">CEP</label>
+                <input class="form-control" id="zip_code" formControlName="zip_code" maxlength="20"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input">
+                <label for="city">Cidade</label>
+                <input class="form-control" id="city" formControlName="city" maxlength="50"/>
               </div>
               <div class="input">
                 <label for="address">Endereço</label>
-                <input class="form-control" id="address" formControlName="address" />
+                <input class="form-control" id="address" formControlName="address" maxlength="100"/>
+              </div>
+              <div class="input">
+                <label for="address2">Complemento</label>
+                <input class="form-control" id="address2" formControlName="address2" maxlength="100"/>
+              </div>
+              <div class="input">
+                <label for="public_area">Logradouro</label>
+                <input class="form-control" id="public_area" formControlName="public_area" maxlength="50"/>
               </div>
               <div class="input">
                 <label for="district">Bairro</label>
-                <input class="form-control" id="district" formControlName="district" />
+                <input class="form-control" id="district" formControlName="district" maxlength="50"/>
               </div>
               <div class="input">
                 <label for="number">Número</label>
-                <input class="form-control" id="number" formControlName="number" />
-              </div>
-              <div class="input mt-3">
-                <button class="btn btn-success" [disabled]="!myform.valid" (click)="save()">
-                  Salvar
-                </button>
+                <input class="form-control" id="number" formControlName="number" maxlength="10"/>
               </div>
             </div>
+          </div>
+          <div class="input mt-3 text-right">
+            <button class="btn btn-success" [disabled]="!myform.valid" (click)="save()">
+              Salvar
+            </button>
           </div>
         </div>
       </div>

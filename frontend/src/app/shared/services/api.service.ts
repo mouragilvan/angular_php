@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from '../models/customer';
 import { Product } from '../models/product';
+import { environment } from 'environments/environment';
 @Injectable()
 export class ApiService {
 
-  url = "http://localhost:8000/public/api";
+  url = environment.url;
 
   constructor(private http: HttpClient) { }
 
