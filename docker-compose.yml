@@ -25,20 +25,25 @@ services:
       - net-custom-cli
     tty: true  
     
+    
   front:
     build:
       context: ./frontend
-      dockerfile: front.dockerfile       
+      dockerfile: front.dockerfile    
+      args:
+        - API_URL=back   
     container_name: ${FRONT_CONTAINER_NAME}
     ports:
-      - "3000:80"   
+      - "3000:80"
     links:
       - back:back  
     networks:
       - net-custom-cli
-    tty: true  
-    environment: 
-      - PROXY_API=back
+    tty: true 
+    depends_on:
+      - back
+    
+    
 
 
   #MySQL Server
