@@ -24,5 +24,7 @@ Desta forma consigo demonstrar melhor meus conhecimentos, pois não faço uso de
 Também decidi pular etapas como autenticação e paginação de resultados por considerar que não são importantes para o escopo desta tarefa. Mas claro que, num futuro próximo, irei dar continuidade a este projeto incluindo mais coisas como estas.
 </p>
 
-<iframe src="https://player.vimeo.com/video/756598690?h=e51481f305&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Apresenta&amp;ccedil;&amp;atilde;o do teste pr&amp;aacute;tico">
-</iframe>
+Veja este vídeo de apresentação:
+
+[<img src="https://cdn.pixabay.com/photo/2016/08/20/06/09/video-1606945_960_720.png" width="100%">](https://vimeo.com/756598690/e51481f305)
+
