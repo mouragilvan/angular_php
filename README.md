@@ -14,6 +14,9 @@ docker container exec controle_vendas_php  composer install
 ```
 docker container exec controle_vendas_php php artisan migrate:fresh --seed
 ```
+```
+Se tudo saiu como o planejado, você pode acessar a aplicação no http://localhost:3000
+```
 
 <h2>Atenção!!! Considerações sobre o projeto</h2>
 
