@@ -1,6 +1,9 @@
-<div class="row" style="border-bottom: 1px solid gray;">
-    <div class="col" *ngFor="let h of header">
-        {{h}}
+<div class="row">
+    <div class="col text-bold" *ngFor="let h of header | keyvalue; let last = last">
+        {{h.value}}
+        <a *ngIf="last" href="/product" class="btn btn-success" style="float: right;width:70px">
+             <i class="fa fa-plus"></i>
+        </a>
     </div>
 </div>
 <div class="row mt-2" *ngFor="let item of data">

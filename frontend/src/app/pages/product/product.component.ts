@@ -34,9 +34,10 @@ export class ProductComponent implements OnInit {
 
      ngOnInit(): void {
         this.initForm();
-        this.loading = true;
+        
         this.id = this.route.snapshot.paramMap.get('id') != undefined ? parseInt(this.route.snapshot.paramMap.get('id')) : null;
         if (this.id != null) {
+          this.loading = true;
          this.service.getProduct(this.id).then((response: Product)=>{
             this.product = response;
             this.initForm();
@@ -50,7 +51,8 @@ export class ProductComponent implements OnInit {
           this.myform.value.id = this.id;  
         }
         this.service.save(this.myform.value).then((response: Product)=>{
-          this.product = response;      
+          this.product = response;
+          this.id = this.product.id;      
           confirm("SUCESSO");       
         }).catch( e=> alert(JSON.stringify(e))).finally( ()=>{
           this.loading = false;
